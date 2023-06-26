@@ -2,36 +2,46 @@
 
 /**
  * _atoi - converts a string to an integer
- * @s: pointer to the string
+ * @s: string to be converted
  *
- * Return: the converted integer
+ * Return: the int converted from the string
  */
 int _atoi(char *s)
 {
-    int c;
-    int sign;
-    int result;
+	int i, d, n, len, f, digit;
 
-    c = 0;
-    sign = 1;
-    result = 0;
+	i = 0;
+	d = 0;
+	n = 0;
+	len = 0;
+	f = 0;
+	digit = 0;
 
-    while (s[c] == ' ')
-        c++;
+	while (s[len] != '\0')
+		len++;
 
-    if (s[c] == '-' || s[c] == '+')
-    {
-        if (s[c] == '-')
-            sign = -1;
-        c++;
-    }
+	while (i < len && f == 0)
+	{
+		if (s[i] == '-')
+			++d;
 
-    while (s[c] >= '0' && s[c] <= '9')
-    {
-        result = (result * 10) + (s[c] - '0');
-        c++;
-    }
+		if (s[i] >= '0' && s[i] <= '9')
+		{
+			digit = s[i] - '0';
+			if (d % 2)
+				digit = -digit;
+			n = n * 10 + digit;
+			f = 1;
+			if (s[i + 1] < '0' || s[i + 1] > '9')
+				break;
+			f = 0;
+		}
+		i++;
+	}
 
-    return result * sign;
+	if (f == 0)
+		return (0);
+
+	return (n);
 }
 
