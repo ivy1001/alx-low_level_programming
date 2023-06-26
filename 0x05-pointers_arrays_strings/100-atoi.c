@@ -1,36 +1,24 @@
-#include "main.h"
-
-/**
- * _atoi - converts a string to an integer
- * @s: pointer to the string
- *
- * Return: the converted integer
- */
-int _atoi(char *s)
+int	ft_atoi(char *str)
 {
-	int sign = 1;
-	int num = 0;
-	int started = 0;
+	int	c;
+	int	i;
+	int	result;
 
-	while (*s != '\0')
+	c = 0;
+	i = 1;
+	result = 0;
+	while ((str[c] >= '\t' && str[c] <= '\r') || (str[c] == ' '))
+		c++;
+	while (str[c] == '+' || str[c] == '-')
 	{
-		if (*s == '-')
-			sign *= -1;
-
-		if (*s >= '0' && *s <= '9')
-		{
-			num = (num * 10) + (*s - '0');
-			started = 1;
-		}
-		else if (started == 1)
-		{
-			/* We encountered a non-digit character after digits, break the loop */
-			break;
-		}
-
-		s++;
+		if (str[c] == '-')
+			i *= -1;
+		c++;
 	}
-
-	return num * sign;
+	while (str[c] >= '0' && str[c] <= '9')
+	{
+		result = (str[c] - '0') + (result * 10);
+		c++;
+	}
+	return (result * i);
 }
-
