@@ -1,4 +1,12 @@
-int	ft_atoi(char *str)
+#include "main.h"
+
+/**
+ * _atoi - converts a string to an integer
+ * @s: pointer to the string
+ *
+ * Return: the converted integer
+ */
+int _atoi(char *s)
 {
 	int	c;
 	int	i;

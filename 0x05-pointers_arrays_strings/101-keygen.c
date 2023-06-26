@@ -19,21 +19,17 @@ int main(void)
 
 	for (i = 0; i < 100; i++)
 	{
-		pass[i] = rand() % 78 + '0'; // Generate a random digit (0-9)
-		sum += pass[i] - '0'; // Convert the character to its integer value and add to the sum
-		putchar(pass[i]); // Print the generated digit
-
-		if ((2772 - sum) < 78)
+		pass[i] = rand() % 78;
+		sum += (pass[i] + '0');
+		putchar(pass[i] + '0');
+		if ((2772 - sum) - '0' < 78)
 		{
-			n = 2772 - sum; // Calculate the remaining value to reach 2772
-			sum += n; // Add the remaining value to the sum
-			putchar(n + '0'); // Print the remaining value as a digit
+			n = 2772 - sum - '0';
+			sum += n;
+			putchar(n + '0');
 			break;
 		}
 	}
 
-	putchar('\n'); // Print a newline character
-
 	return (0);
 }
-
