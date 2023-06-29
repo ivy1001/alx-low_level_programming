@@ -1,61 +1,60 @@
-#include "main.h"
 #include <stdio.h>
+#include "main.h"
 
 /**
- * print_line - prints a s bytes of a buffer
- * @c: buffer to print
- * @s: bytes of buffer to print
- * @l: line of buffer to print
+ * infinite_add - Adds two numbers
+ * @n1: First number
+ * @n2: Second number
+ * @r: Buffer to store the result
+ * @size_r: Size of the buffer
  *
- * Return: void
+ * Return: Pointer to the result
  */
-
-void print_line(char *c, int s, int l)
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int j, k;
+	int i, j, k, len1, len2, carry, sum;
 
-	for (j = 0; j <= 9; j++)
+	len1 = len2 = carry = 0;
+
+	/* Calculate the length of n1 */
+	while (n1[len1] != '\0')
+		len1++;
+
+	/* Calculate the length of n2 */
+	while (n2[len2] != '\0')
+		len2++;
+
+	if (len1 >= size_r || len2 >= size_r)
+		return (0);
+
+	i = len1 - 1;
+	j = len2 - 1;
+	k = size_r - 1;
+
+	while (i >= 0 || j >= 0)
 	{
-		if (j <= s)
-			printf("%02x", c[l * 10 + j]);
-		else
-			printf("  ");
-		if (j % 2)
-			putchar(' ');
+		sum = carry;
+
+		if (i >= 0)
+			sum += n1[i] - '0';
+		if (j >= 0)
+			sum += n2[j] - '0';
+
+		carry = sum / 10;
+		sum %= 10;
+
+		r[k] = sum + '0';
+
+		i--;
+		j--;
+		k--;
 	}
-	for (k = 0; k <= s; k++)
-	{
-		if (c[l * 10 + k] > 31 && c[l * 10 + k] < 127)
-			putchar(c[l * 10 + k]);
-		else
-			putchar('.');
-	}
+
+	if (carry > 0 && k >= 0)
+		r[k] = carry + '0';
+	else if (carry > 0)
+		return (0);
+
+	return (r + k + 1);
 }
 
-/**
- * print_buffer - prints a buffer
- * @b: buffer to print
- * @size: size of buffer
- *
- * Return: void
- */
-void print_buffer(char *b, int size)
-{
-	int i;
-
-	for (i = 0; i <= (size - 1) / 10 && size; i++)
-	{
-		printf("%08x: ", i * 10);
-		if (i < size / 10)
-		{
-			print_line(b, 9, i);
-		}
-		else
-		{
-			print_line(b, size % 10 - 1, i);
-		}
-		putchar('\n');
-	}
-	if (size == 0)
-		putchar('\n');
-}
