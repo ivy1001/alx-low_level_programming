@@ -21,7 +21,7 @@ int _strcmp(char *s1, char *s2)
 
 	/* Check if s1 and s2 have the same length */
 	if (s1[i] == '\0' && s2[i] == '\0')
-		return 0;
+		return (0);
 
 	/* Return the difference in lengths if s1 and s2 differ in length */
 	return (s1[i] - s2[i]);

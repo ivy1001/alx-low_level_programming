@@ -16,10 +16,9 @@ char *_strncpy(char *dest, char *src, int n)
 	for (i = 0; i < n && src[i] != '\0'; i++)
 		dest[i] = src[i];
 
-	/* If the source string is shorter than n, pad the remaining destination with null bytes */
 	for (; i < n; i++)
 		dest[i] = '\0';
 
-	return dest;
+	return (dest);
 }
 
