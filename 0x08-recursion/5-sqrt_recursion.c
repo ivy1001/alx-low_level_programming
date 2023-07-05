@@ -13,9 +13,9 @@ int _sqrt_recursion(int n)
 		return -1;
 
 	if (n == 0 || n == 1)
-		return n;
+		return (n);
 
-	return sqrt_helper(n, 1, n);
+	return (sqrt_helper(n, 1, n));
 }
 
 /**
@@ -34,11 +34,11 @@ int sqrt_helper(int n, int start, int end)
 	if (start <= end)
 	{
 		if (mid * mid == n)
-			return mid;
+			return (mid);
 		if (mid * mid > n)
-			return sqrt_helper(n, start, mid - 1);
-		return sqrt_helper(n, mid + 1, end);
+			return (sqrt_helper(n, start, mid - 1));
+		return (sqrt_helper(n, mid + 1, end));
 	}
-	return end;
-}
 
+	return (end);
+}
