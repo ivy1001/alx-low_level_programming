@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "main.h"
 /**
- * f_atoi - converts a string to an integer
+ * ft_atoi - converts a string to an integer
  * @s: string to be converted
  *
  * Return: the int converted from the string
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 
 	for (k = 1; k < argc; k++)
 	{
-		num = _atoi(argv[k]);
+		num = ft_atoi(argv[k]);
 		if (num >= 0)
 		{
 			sum += num;
